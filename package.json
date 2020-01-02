@@ -4,6 +4,7 @@
   "description": "training prpject for mastering tyescript",
   "private": true,
   "scripts": {
+    "start": "lite-server",
     "test": "test"
   },
   "repository": {
@@ -18,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/thir13en/typescript-training/issues"
   },
-  "homepage": "https://github.com/thir13en/typescript-training#readme"
+  "homepage": "https://github.com/thir13en/typescript-training#readme",
+  "devDependencies": {
+    "lite-server": "~2.5.4"
+  }
 }
