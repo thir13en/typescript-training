@@ -1,0 +1,22 @@
+{
+  "name": "typescript-training",
+  "version": "1.0.0",
+  "description": "training prpject for mastering tyescript",
+  "private": true,
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thir13en/typescript-training.git"
+  },
+  "keywords": [
+    "typescript"
+  ],
+  "author": "thir13en",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thir13en/typescript-training/issues"
+  },
+  "homepage": "https://github.com/thir13en/typescript-training#readme"
+}
