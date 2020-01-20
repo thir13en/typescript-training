@@ -10,3 +10,6 @@
 
 #### How to run the Typescript compiler in watch mode?
 tsc <filename> -w
+
+#### How to initialize Typescript project?
+tsc --init
