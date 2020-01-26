@@ -1,2 +1,8 @@
+# IDEs
 .idea/
+
+# Vendor libs
 node_modules/
+
+# Production build
+dist/
