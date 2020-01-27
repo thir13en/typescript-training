@@ -7,3 +7,5 @@
   "scripthost"
 ],
 ```
+### What property would you use to avoid compiling if there is an error?
+noEmitOnError
