@@ -23,3 +23,7 @@ file pattern which is not in this array, won't be compiled in our typescript pro
 we don't set this array, then all files with the typescript extension will be compiled if they are
 not in the exclude array. Exclude array has MORE priority than includes array.
 
+### How to make sure a function receives a certain execution context?
+We set an argument, which is a Typescript reserved word, as this: functionName(this: ContextType), this
+argument does not have to be passed later and Typescript knows it is a context binding.
+
