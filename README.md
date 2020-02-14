@@ -26,8 +26,3 @@ not in the exclude array. Exclude array has MORE priority than includes array.
 ### How to make sure a function receives a certain execution context?
 We set an argument, which is a Typescript reserved word, as this: functionName(this: ContextType), this
 argument does not have to be passed later and Typescript knows it is a context binding.
-
-### How to avoid declaring a property in the constructor and then assigning it to the same name?
-Just declare the access type in the constructor and it will be available for the class.
-constructor(public/private propertyName) {}
-
