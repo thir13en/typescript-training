@@ -16,9 +16,6 @@
   ],
   "author": "thir13en",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/thir13en/typescript-training/issues"
-  },
   "homepage": "https://github.com/thir13en/typescript-training#readme",
   "devDependencies": {
     "lite-server": "~2.5.4"
