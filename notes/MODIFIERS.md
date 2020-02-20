@@ -12,3 +12,15 @@ On the base class:
         abstract methodName(...params): returnType
     }
 ``` 
+### How to force a class to be only instantiable as a singleton?
+Inside the class;
+`private static instance: ClassName;`
+`private constructor() {}`
+```
+static getInstance() {
+    if (!ClassName.instance) {
+        this.instance = new ClassName(...params);
+    }
+    return this.instance;
+}
+```
