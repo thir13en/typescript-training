@@ -18,3 +18,7 @@ if ('property1' in com) {
     // logic that belongs to Type2
 }
 ```
+
+### Class type checking
+For classes you would use the following syntax:  
+`ìf instance instanceof ClassName;`
