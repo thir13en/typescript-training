@@ -56,3 +56,6 @@ moveAnimal(animal: Animal) {
 // we get intellisense and type checking here
 moveAnimal({ type: 'bird', flyingSpeed: 120 });
 ```
+### Type Casting
+expression as TypeCasted
+
