@@ -22,3 +22,37 @@ if ('property1' in com) {
 ### Class type checking
 For classes you would use the following syntax:  
 `ìf instance instanceof ClassName;`
+
+### Discriminated Union types
+Adds some syntactic sugar for determining which properties can we use
+in union types. First we set a type property in every element.
+```
+interface Bird {
+    type: 'bird',
+    flyingSpeed: 200
+}
+interface Horse {
+    type: 'horse',
+    runningSpeed: 50
+}
+
+type Animal: Bird | Horse;
+
+moveAnimal(animal: Animal) {
+    let speed: number;
+    switch (animal.type) {
+        // we get intellisense here
+        case 'bird':
+            speed = animal.flyingSpeed;
+            break;
+        case 'horse':
+            speed = animal.runningSpeed;
+            breaK;
+        default:
+            break;
+    }
+}
+
+// we get intellisense and type checking here
+moveAnimal({ type: 'bird', flyingSpeed: 120 });
+```
