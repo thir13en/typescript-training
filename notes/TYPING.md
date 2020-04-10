@@ -59,3 +59,14 @@ moveAnimal({ type: 'bird', flyingSpeed: 120 });
 ### Type Casting
 expression as TypeCasted
 
+# Index Properties
+Useful when we don't know how many properties an interface will have,
+but we know the type. The syntax is as follows:
+```typescript
+    interface Name {
+        // allows to receive many properties whose name can be evaluated
+        // as a string, and ALL of them will be of type string.
+        [prop: string]: string
+    }
+```
+
