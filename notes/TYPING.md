@@ -70,3 +70,15 @@ but we know the type. The syntax is as follows:
     }
 ```
 
+### Function Overload
+You can call a function defining several possible input parameters and types
+```typescript
+function add(a: number, b:number): number;
+function add(a: string, b:string): string {
+    if (typeof a === 'number' && typeof b === 'number') {
+        return a + b;
+    }
+    return a.toString() + b.toString();
+}
+```
+
