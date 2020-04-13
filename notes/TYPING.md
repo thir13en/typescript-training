@@ -82,3 +82,9 @@ function add(a: string, b:string): string {
 }
 ```
 
+### Optional Chaining
+Check if attributes are set with the Optional Chaining Operator `?`:
+```typescript
+const example = object.with?.uncertain?.properties;
+```
+
