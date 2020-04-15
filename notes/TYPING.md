@@ -69,22 +69,3 @@ but we know the type. The syntax is as follows:
         [prop: string]: string
     }
 ```
-
-### Function Overload
-You can call a function defining several possible input parameters and types
-```typescript
-function add(a: number, b:number): number;
-function add(a: string, b:string): string {
-    if (typeof a === 'number' && typeof b === 'number') {
-        return a + b;
-    }
-    return a.toString() + b.toString();
-}
-```
-
-### Optional Chaining
-Check if attributes are set with the Optional Chaining Operator `?`:
-```typescript
-const example = object.with?.uncertain?.properties;
-```
-
