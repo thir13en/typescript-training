@@ -1,4 +1,13 @@
-const _ = require('lodash');
+// we can import with require once we have @types/node package
+const old_ = require('lodash');
+
+// import custom type definition
+const jQuery: jQuery = require('jquery');
+
+// we can install es6 way once wwe have @types/lodash package
+import * as _ from 'lodash';
+
+
 import add from './add';
 
 
