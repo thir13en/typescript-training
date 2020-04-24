@@ -59,7 +59,7 @@ moveAnimal({ type: 'bird', flyingSpeed: 120 });
 ### Type Casting
 expression as TypeCasted
 
-# Index Properties
+### Index Properties
 Useful when we don't know how many properties an interface will have,
 but we know the type. The syntax is as follows:
 ```typescript
@@ -69,3 +69,6 @@ but we know the type. The syntax is as follows:
         [prop: string]: string
     }
 ```
+
+### The never type
+Can be assigned to any kind of variable but tolerates no assignments.
