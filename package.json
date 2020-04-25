@@ -1,10 +1,10 @@
 {
   "name": "typescript-training",
   "version": "1.0.0",
-  "description": "training prpject for mastering tyescript",
+  "description": "training project for mastering tyescript",
   "private": true,
   "scripts": {
-    "start": "lite-server",
+    "start": "http-server -c-1",
     "test": "test"
   },
   "repository": {
