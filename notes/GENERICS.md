@@ -30,3 +30,12 @@ console.log(merged.name);
 // this now will fail
 const specificMerge = merge<string, number>('Homer', 55);
 ```
+
+### The keyof constraint
+A constraint to guarantee that a certain key is a property
+of an object.
+```typescript
+function extractAndConvert<T extends object, U keyof T>(obj: T, key: U): string {
+    return 'value ' + obj[key];
+}
+``` 
