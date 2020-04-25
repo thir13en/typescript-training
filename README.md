@@ -1,4 +1,5 @@
 # typescript-training
+Typescript is a sub-typing typed programming language based on JavaScript.
 
 ## RECAP
 * ! at the end of a value to assert non null
