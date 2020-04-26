@@ -9,7 +9,7 @@
 Follow the steps in [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-18-04).  
 The name of the database is `typescript-ang-uni`.
 
-Install and configure [PGAdmin](https://linuxhint.com/install-pgadmin4-ubuntu/)  
+Install and configure [PGAdmin](https://www.digitalocean.com/community/tutorials/how-to-install-configure-pgadmin4-server-mode)  
 Go to your home folder and create the pgAdmin folder and the virtualenv fot it:
 
 ```
