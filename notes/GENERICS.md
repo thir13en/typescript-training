@@ -38,4 +38,29 @@ of an object.
 function extractAndConvert<T extends object, U keyof T>(obj: T, key: U): string {
     return 'value ' + obj[key];
 }
+```
+
+### An example of a generic class and why is it useful
+```typescript
+class DataStorage<T extends string | number> {
+	private data: T[] = [];
+
+	addItem(item: T) {
+		this.data.push(item);
+	}
+
+	removeItem(item: T) {
+		if (this.data.indexOf(item) === -1) {
+			this.data.splice(this.data.indexOf(item), 1);
+		}
+	}
+
+	getItems() {
+	 return { ...this.data };
+	}
+
+}
+
+const textStorage = new DataStorage<string>();
+
 ``` 
