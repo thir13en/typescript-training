@@ -62,5 +62,4 @@ class DataStorage<T extends string | number> {
 }
 
 const textStorage = new DataStorage<string>();
-
 ``` 
