@@ -63,3 +63,21 @@ class DataStorage<T extends string | number> {
 
 const textStorage = new DataStorage<string>();
 ``` 
+
+### The Partial type: a special and handy king of generic.
+It receives a generic type and turn all it's properties into optional.
+```typescript
+interface Typed {
+    one: string,
+    two: boolean,
+}
+
+// throws compilation error cause two is missing
+const rocco: Typed = {};
+rocco.one = 'something';
+
+// no compile time errors, all properties are optional!
+const rocco2: Partial<Typed> = {};
+rocco2.one = 'dubaiiii';
+
+```
