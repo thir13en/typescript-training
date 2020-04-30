@@ -81,3 +81,18 @@ const rocco2: Partial<Typed> = {};
 rocco2.one = 'dubaiiii';
 
 ```
+
+### The Readonly type, another really helpful generic
+It makes a certain object or reference of readonly type.
+```typescript
+const names = ['Me', 'Natalia'];
+names.push('Laura');
+// works even thou is a const
+
+const lockedNames: Readonly<string[]> = ['Me', 'Natalia'];
+lockedNames.push('Laura');
+// will fail since lockedNames is Readonly. 
+```
+
+### More info on utility types:
+[Follow this link](https://www.typescriptlang.org/docs/handbook/utility-types.html)
