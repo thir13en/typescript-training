@@ -1,3 +1,3 @@
-import initCourseModel from './initCourseModel';
+import CourseModel from './CourseModel';
 
-export { initCourseModel };
+export { CourseModel };
