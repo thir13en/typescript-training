@@ -1,0 +1,23 @@
+{
+  "name": "understanding-typescript-udemy-2020",
+  "version": "1.0.0",
+  "description": "training project for mastering typescript",
+  "private": true,
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thir13en/typescript-training.git"
+  },
+  "keywords": [
+    "typescript"
+  ],
+  "author": "thir13en",
+  "license": "ISC",
+  "homepage": "https://github.com/thir13en/typescript-training#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "~3.8.3"
+  }
+}
