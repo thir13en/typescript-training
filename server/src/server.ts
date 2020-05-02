@@ -1,4 +1,4 @@
-import { CourseModel } from './models';
+import { findAllCourses } from './queries';
 
 
-CourseModel.findAll().then(console.log);
+findAllCourses().then(res => console.log(JSON.stringify(res)));
