@@ -1,15 +1,14 @@
 import express, { Application } from 'express';
 
 import { findAllCourses } from './queries';
+import { initRestApi } from './api';
 
 
 const app: Application = express();
 
-app.route('/api/courses')
-    .get((req, res) => findAllCourses().then(
-        courses => res.status(200).json({ courses }),
-    ));
+initRestApi(app);
 
+// start server
 app.listen(8090, () => {
     console.log('successfully running!');
 })
