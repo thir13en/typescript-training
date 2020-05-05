@@ -1,7 +1,7 @@
 import express, { Application } from 'express';
 
 import { findAllCourses } from './queries';
-import { initRestApi } from './api';
+import { apiErrorHandler, initRestApi } from './api';
 
 
 const app: Application = express();
@@ -9,7 +9,7 @@ const app: Application = express();
 initRestApi(app);
 
 // important to put after the api definition, since error handler must only trigger when api fails
-app.use((err, req, res) => console.log('err'));
+app.use(apiErrorHandler);
 
 // start server
 app.listen(8090, () => {
