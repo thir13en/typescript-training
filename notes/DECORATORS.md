@@ -4,3 +4,6 @@ act as a helper to make sure your code becomes used in a certain way.
 
 ## How they work?
 Decorators run on class definition, NOT in instance definition.
+
+## How to pass parameters to a decorator?
+With the magic of decorator factories
