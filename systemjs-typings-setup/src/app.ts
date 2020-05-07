@@ -2,7 +2,7 @@
 const old_ = require('lodash');
 
 // import custom type definition
-const jQuery: jQuery = require('jquery');
+const jQuery: jQuery.Sizzle = require('jquery');
 
 // we can install es6 way once wwe have @types/lodash package
 import * as _ from 'lodash';
