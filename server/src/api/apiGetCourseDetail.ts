@@ -8,9 +8,9 @@ import { findCourseDetail } from '../queries';
 
 const apiGetCourseDetail = (req: Request, res: Response) => {
     const courseId = parseInt(req.params.id);
-    findCourseDetail(courseId);
-        // .then(partial(onSuccess, res))
-        // .catch(partial(onError, res, 'find course detail courses failed'));
+    findCourseDetail(courseId)
+                .then(partial(onSuccess, res))
+                .catch(partial(onError, res, 'find course detail courses failed'));
 };
 
 export default apiGetCourseDetail;
