@@ -35,18 +35,23 @@ class ElocuentGenious {
 // an example of a decorator that injects template
 function WithTemplate(template: string, hookId: string): (constructor: Function) => any {
     // we can use underscore when we don't need to access the underlying class
-    return function (_: Function) {
+    // return function (_: Function) {
+    // used any to allow for new constructor
+    return function (constructor: any) {
         const hookEl = document.getElementById(hookId);
+        const p = new constructor();
 
         if (hookEl) {
-            hookEl.innerHTML = template;
+            // hookEl.innerHTML = template;
+            console.log(template);
+            hookEl.innerHTML = p.name;
         }
     }
 }
 
 @WithTemplate('<h1>hello world</h1>', 'hooked')
 class Injected {
-    name!: 'Santi';
+    name = 'Santi';
 
     constructor() {
         console.log('my name is ' + this.name)
