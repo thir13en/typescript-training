@@ -11,13 +11,10 @@ LessonModel.init({
     description: DataTypes.STRING,
     duration: DataTypes.STRING,
     seqNo: DataTypes.NUMBER,
-    courseId: DataTypes.NUMBER,
     pro: DataTypes.BOOLEAN,
     tags: DataTypes.STRING,
     gitHubUrl: DataTypes.STRING,
+    courseId: DataTypes.NUMBER,
 }, { sequelize, modelName: 'Lesson' });
-
-// TODO: solve issue here
-LessonModel.belongsTo(CourseModel, { foreignKey: 'courseId' })
 
 export default LessonModel;

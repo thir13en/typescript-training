@@ -18,6 +18,4 @@ CourseModel.init({
     isOngoing: DataTypes.BOOLEAN,
 }, { sequelize, modelName: 'Course' });
 
-CourseModel.hasMany(LessonModel, { foreignKey: 'courseId' });
-
 export default CourseModel;
