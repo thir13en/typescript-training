@@ -12,7 +12,7 @@ export function initRestApi(app: Application) {
     app.route('/api/courses').get(apiGetAllCourses);
     app.route('/api/courses/:id').get(apiGetCourseDetail);
 
-    app.route('api/lessons').post(apiPostCreateLesson);
+    app.route('/api/lessons').post(apiPostCreateLesson);
 }
 
 export { apiErrorHandler, onSuccess, onError };
