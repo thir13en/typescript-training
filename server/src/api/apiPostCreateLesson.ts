@@ -3,15 +3,11 @@ import partial from 'lodash/partial';
 
 import onSuccess from './onSuccess';
 import onError from './onError';
-import { findCourseDetail } from '../queries';
+import { createLesson } from '../queries';
 
 
-const apiGetCourseDetail = (req: Request, res: Response) => {
-    const courseId = parseInt(req.params.id);
-    findCourseDetail(courseId)
+export default function apiPostCreateLesson(req: Request, res: Response) {
+    createLesson(req.body)
         .then(partial(onSuccess, res))
         .catch(partial(onError, res, 'find course detail courses failed'));
-};
-
-export default apiGetCourseDetail;
-
+}
