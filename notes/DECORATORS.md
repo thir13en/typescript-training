@@ -7,3 +7,7 @@ Decorators run on class definition, NOT in instance definition.
 
 ## How to pass parameters to a decorator?
 With the magic of decorator factories
+
+## You can add more than one decorator
+The order of execution is bottom up, the ones that are closer to the function
+get executed first. 

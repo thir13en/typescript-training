@@ -57,3 +57,37 @@ class Injected {
         console.log('my name is ' + this.name)
     }
 }
+
+
+// multiple decorators can be applied to the same function, yay! composability!
+@LoggerFactory('This will run last, since decorators are evaluated bottom up!')
+@WithTemplate('<h1>hello world</h1>', 'hooked')
+class MultiInjected {
+    name = 'Santi';
+
+    constructor() {
+        console.log('my name is ' + this.name)
+    }
+}
+
+// when you create a property decorator, the decorator receives two arguments
+// the decorator is executed in the moment where the class is declared, NOT when it is instantiated
+function Log(target: any, propertyName: string | Symbol) {
+    console.log('Property decorator');
+    console.log(target, propertyName);
+}
+class Product {
+    @Log
+    title: string;
+    set price(val: number) {
+        if (val > 0)
+            this._price = val;
+        else throw new Error('Price should be positive!');
+    }
+
+    constructor(private _price: number) {}
+
+    getPriceWithTag(tax: number) {
+        return  this._price * (1 + tax);
+    }
+}
