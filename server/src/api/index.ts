@@ -3,6 +3,7 @@ import { Application } from 'express';
 import apiErrorHandler from './apiErrorHandler';
 import onError from './onError';
 import onSuccess from './onSuccess';
+import onDatabaseError from './onDatabaseError';
 import apiGetAllCourses from './apiGetAllCourses';
 import apiGetCourseDetail from './apiGetCourseDetail';
 import apiPostCreateLesson from './apiPostCreateLesson';
@@ -15,4 +16,4 @@ export function initRestApi(app: Application) {
     app.route('/api/lessons').post(apiPostCreateLesson);
 }
 
-export { apiErrorHandler, onSuccess, onError };
+export { apiErrorHandler, onSuccess, onError, onDatabaseError };

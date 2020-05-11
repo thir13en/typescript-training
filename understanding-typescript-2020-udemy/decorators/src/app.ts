@@ -78,7 +78,7 @@ function Log(target: any, propertyName: string | Symbol) {
 }
 class Product {
     @Log
-    title: string;
+    title!: string;
     set price(val: number) {
         if (val > 0)
             this._price = val;
