@@ -11,7 +11,5 @@ export default function onDatabaseError(res: Response, err: any) {
     // database error messages should never travel to the client
     res
         .status(500)
-        .send({
-            code: 'ERR-002', message: `Creation of lesson failed, err code ${id}`
-        });
+        .send({ code: 'ERR-002', message: `Database error with code ${id}` });
 }

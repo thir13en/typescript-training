@@ -1,10 +1,13 @@
 import express, { Application } from 'express';
+import bodyParser from 'body-parser';
 
-import { findAllCourses } from './queries';
 import { apiErrorHandler, initRestApi } from './api';
 
 
 const app: Application = express();
+
+// important to use before
+app.use(bodyParser.json());
 
 initRestApi(app);
 
