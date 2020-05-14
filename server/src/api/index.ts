@@ -7,6 +7,7 @@ import onDatabaseError from './onDatabaseError';
 import apiGetAllCourses from './apiGetAllCourses';
 import apiGetCourseDetail from './apiGetCourseDetail';
 import apiPostCreateLesson from './apiPostCreateLesson';
+import apiPatchLesson from './apiPatchLesson';
 
 
 export function initRestApi(app: Application) {
@@ -14,6 +15,7 @@ export function initRestApi(app: Application) {
     app.route('/api/courses/:id').get(apiGetCourseDetail);
 
     app.route('/api/lessons').post(apiPostCreateLesson);
+    app.route('/api/lessons/:id').patch(apiPatchLesson);
 }
 
 export { apiErrorHandler, onSuccess, onError, onDatabaseError };
