@@ -1,7 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 
 import { sequelize } from '../orm';
-import CourseModel from './CourseModel';
 
 
 class LessonModel extends Model {}
