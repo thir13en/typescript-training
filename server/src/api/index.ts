@@ -8,6 +8,7 @@ import apiGetAllCourses from './apiGetAllCourses';
 import apiGetCourseDetail from './apiGetCourseDetail';
 import apiPostCreateLesson from './apiPostCreateLesson';
 import apiPatchLesson from './apiPatchLesson';
+import apiDeleteLesson from './apiDeleteLesson';
 
 
 export function initRestApi(app: Application) {
@@ -16,6 +17,7 @@ export function initRestApi(app: Application) {
 
     app.route('/api/lessons').post(apiPostCreateLesson);
     app.route('/api/lessons/:id').patch(apiPatchLesson);
+    app.route('/api/lessons/:id').delete(apiPatchLesson);
 }
 
 export { apiErrorHandler, onSuccess, onError, onDatabaseError };
