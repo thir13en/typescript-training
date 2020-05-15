@@ -17,7 +17,7 @@ export function initRestApi(app: Application) {
 
     app.route('/api/lessons').post(apiPostCreateLesson);
     app.route('/api/lessons/:id').patch(apiPatchLesson);
-    app.route('/api/lessons/:id').delete(apiPatchLesson);
+    app.route('/api/lessons/:id').delete(apiDeleteLesson);
 }
 
 export { apiErrorHandler, onSuccess, onError, onDatabaseError };

@@ -7,10 +7,10 @@ import onDatabaseError from './onDatabaseError';
 import { deleteLesson } from '../queries';
 
 
-export default function apiPatchLesson(req: Request, res: Response) {
+export default function apiDeleteLesson(req: Request, res: Response) {
     const lessonId = req.params.id;
 
-    deleteLesson(lessonId, req.body)
+    deleteLesson(lessonId)
         .then(partial(onSuccess, res))
         .catch(partial(onDatabaseError, res))
         .catch(partial(onError, res, 'could not delete lesson'));
