@@ -76,9 +76,29 @@ function Log(target: any, propertyName: string | Symbol) {
     console.log('Property decorator');
     console.log(target, propertyName);
 }
+// Actually, if we are dealing with an accessor we can receive up to three arguments
+function LogNew(target: any, name: string, property: PropertyDescriptor) {
+    console.log('LogNew Decorator');
+    console.log(target);
+    console.log(name);
+    console.log(property);
+}
+function LogMethod(target: any, name: string | Symbol, property: PropertyDescriptor) {
+    console.log('LogNew Decorator');
+    console.log(target);
+    console.log(name);
+    console.log(property);
+}
+function LogParameter(target: any, name: string | Symbol, position: number) {
+    console.log('LogNew Decorator');
+    console.log(target);
+    console.log(name);
+    console.log(position);
+}
 class Product {
     @Log
     title!: string;
+    @LogNew
     set price(val: number) {
         if (val > 0)
             this._price = val;
@@ -87,7 +107,9 @@ class Product {
 
     constructor(private _price: number) {}
 
-    getPriceWithTag(tax: number) {
+    @LogMethod
+    getPriceWithTag(@LogParameter tax: number) {
         return  this._price * (1 + tax);
     }
 }
+
