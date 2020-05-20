@@ -113,3 +113,54 @@ class Product {
     }
 }
 
+function WithTemplateOverride(template: string, hookId: string) {
+    /**
+     * if you return something inside of the return function, you will OVERRIDE the constructor function
+     * of the class that receives this decorator, you can do so via the CLASS JavaScript, which at the end
+     * of the day is only syntactic sugar for constructor functions.
+     */
+    return function<T extends { new(...args: any[]): {name: string} }>(originalConstructor: T) {
+        // The cream comes here
+        return class extends originalConstructor {
+            // constructor(...args: any[]) {
+            // this tells typescript we know we don't use args and we can ignore them
+            constructor(..._: any[]) {
+                // we must invoke the original constructor
+                super();
+                /**
+                 * now the template will ONLY be rendered if we INSTANTIATE this class
+                 * and not at declaration time.
+                 */
+                const hookEl = document.getElementById(hookId);
+
+                if (hookEl) {
+                    // hookEl.innerHTML = template;
+                    console.log(template);
+                    hookEl.innerHTML = this.name;
+                }
+            }
+        }
+    }
+}
+
+// A more succinct example from Stack Overflow
+function DecoratorName(attr: any) {
+    return function _DecoratorName<T extends {new(...args: any[]): {}}>(constr: T){
+        return class extends constr {
+            constructor(...args: any[]) {
+                super(...args)
+                console.log('Did something after the original constructor!')
+                console.log('Here is my attribute!', attr.attrName)
+            }
+        }
+    }
+}
+
+@WithTemplateOverride('<h1>hello world</h1>', 'hooked')
+class Person {
+    name = 'Santi';
+
+    constructor() {
+        console.log('my name is ' + this.name)
+    }
+}
