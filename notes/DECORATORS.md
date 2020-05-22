@@ -10,4 +10,7 @@ With the magic of decorator factories
 
 ## You can add more than one decorator
 The order of execution is bottom up, the ones that are closer to the function
-get executed first. 
+get executed first.
+
+### Which decorators can use the returned value of the decorator?
+Class decorators, method decorators and accessors decorators 
