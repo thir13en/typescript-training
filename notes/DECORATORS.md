@@ -13,4 +13,7 @@ The order of execution is bottom up, the ones that are closer to the function
 get executed first.
 
 ### Which decorators can use the returned value of the decorator?
-Class decorators, method decorators and accessors decorators 
+Class decorators, method decorators and accessors decorators
+
+### Parameters associated with a Method Decorator
+target, propertyKey, descriptor 
