@@ -44,3 +44,23 @@ class Database {
 const db = new Database();
 
 //db.saveData({message: 'Hello World !!'});
+
+
+// creating an Autobind decorator
+// if you add it to any class method, the class context will always be bind to the method, no matter the call
+// context
+function Autobind(_: any, _2: string | Symbol, descriptor: PropertyDescriptor) {
+    const originalMethod = descriptor.value;
+    const adjDescriptor: PropertyDescriptor = {
+        configurable: true,
+        enumerable: false,
+        // here we can intercept method call and add some magic
+        get(): any {
+            // this here will belong to the object in which we define the getter
+            const boundFn = originalMethod.bind(this);
+            return boundFn;
+        }
+    };
+    // return the adjusted descriptor
+    return adjDescriptor;
+}
