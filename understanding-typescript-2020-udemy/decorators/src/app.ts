@@ -164,3 +164,31 @@ class Person {
         console.log('my name is ' + this.name)
     }
 }
+
+
+function Required() {}
+function PositiveNumber() {}
+function Validate(obj: object) {}
+
+class Course {
+    name: string;
+    price: number;
+
+    constructor(n: string, p: number) {
+        this.name = n;
+        this.price = p;
+    }
+}
+
+const courseForm = document.querySelector('form')!
+courseForm.addEventListener('submit', event => {
+    event.preventDefault();
+    const titleEl = document.getElementById('title') as HTMLInputElement;
+    const priceEl = document.getElementById('price') as HTMLInputElement;
+
+    const title = titleEl.value;
+    const price = +priceEl.value;
+
+    const course = new Course(title, price);
+    console.log(course);
+})
