@@ -1,10 +1,13 @@
-import { CourseModel } from '../models';
 import { FindOptions } from 'sequelize';
-import CourseDetail from '../../../shared/interfaces/course-detail';
 
-export default function findAllCourses(): Promise<CourseDetail> {
+import { CourseModel } from '../models';
+import CourseSummary from '../../../shared/interfaces/course-summary';
+import { createCourseSummaries } from '../../../shared/middleware';
+
+
+export default function findAllCourses(): Promise<CourseSummary[]> {
     const queryOptions: FindOptions = {
         order: ['seqNo'],
     }
-    return CourseModel.findAll(queryOptions);
+    return CourseModel.findAll(queryOptions).then(createCourseSummaries);
 }

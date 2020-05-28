@@ -1,4 +1,5 @@
 export default interface Lesson {
+    readonly id: number,
     readonly seqNo: number,
     readonly url: string,
     description: string,
