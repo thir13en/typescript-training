@@ -165,6 +165,8 @@ class Person {
     }
 }
 
+// TODO: review this code
+// https://www.udemy.com/course/understanding-typescript/learn/lecture/16935744#questions/8835948
 interface ValidatorConfig {
     [property: string]: {
         [validatableProp: string]: string[];
@@ -182,7 +184,7 @@ function Required(target: any, propName: string) {
 function PositiveNumber(target: any, propName: string) {
     registeredValidators[target.constructor.name] = {
         ...registeredValidators[target.constructor.name],
-        [propName]: ['required'],
+        [propName]: ['positive'],
     }
 }
 function Validate(obj: any) {
