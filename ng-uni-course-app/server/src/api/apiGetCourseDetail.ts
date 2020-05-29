@@ -9,6 +9,7 @@ import onDatabaseError from './onDatabaseError';
 
 const apiGetCourseDetail = (req: Request, res: Response) => {
     const courseId = parseInt(req.params.id);
+
     findCourseDetail(courseId)
         .then(partial(onSuccess, res))
         .catch(partial(onDatabaseError, res))
