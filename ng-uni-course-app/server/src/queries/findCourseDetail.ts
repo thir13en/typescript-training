@@ -1,7 +1,11 @@
-import { CourseModel, LessonModel } from '../models';
+import Bluebird from 'bluebird';
 
-export default function findCourseDetail(courseId: number) {
+import { CourseModel, LessonModel } from '../models';
+import { CourseDetail, createCourseDetail } from '../../../shared/interfaces';
+
+
+export default function findCourseDetail(courseId: number): Bluebird<CourseDetail> {
     return CourseModel.findByPk(courseId, {
         include: [{ model: LessonModel}],
-    });
+    }).then(createCourseDetail);
 }
