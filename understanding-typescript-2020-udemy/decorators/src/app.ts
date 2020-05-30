@@ -165,8 +165,6 @@ class Person {
     }
 }
 
-// TODO: review this code
-// https://www.udemy.com/course/understanding-typescript/learn/lecture/16935744#questions/8835948
 interface ValidatorConfig {
     [property: string]: {
         [validatableProp: string]: string[]; // ['required', 'positive'...]
