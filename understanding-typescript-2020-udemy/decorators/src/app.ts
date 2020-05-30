@@ -169,25 +169,33 @@ class Person {
 // https://www.udemy.com/course/understanding-typescript/learn/lecture/16935744#questions/8835948
 interface ValidatorConfig {
     [property: string]: {
-        [validatableProp: string]: string[];
+        [validatableProp: string]: string[]; // ['required', 'positive'...]
     }
 }
 
 const registeredValidators: ValidatorConfig = {};
 
 function Required(target: any, propName: string) {
+    const previousValidators =
+        registeredValidators[target.constructor.name] && registeredValidators[target.constructor.name][propName] ?
+            [...registeredValidators[target.constructor.name][propName]] : []
+
     registeredValidators[target.constructor.name] = {
         ...registeredValidators[target.constructor.name],
-        [propName]: ['required'],
+        [propName]: [...previousValidators, 'required'],
     }
 }
 function PositiveNumber(target: any, propName: string) {
+    const previousValidators =
+        registeredValidators[target.constructor.name] && registeredValidators[target.constructor.name][propName] ?
+            [...registeredValidators[target.constructor.name][propName]] : []
+
     registeredValidators[target.constructor.name] = {
         ...registeredValidators[target.constructor.name],
-        [propName]: ['positive'],
+        [propName]: [...previousValidators, 'positive'],
     }
 }
-function Validate(obj: any) {
+function validate(obj: any) {
     const objValidatorConfig = registeredValidators[obj.constructor.name];
 
     if (!objValidatorConfig) {
@@ -196,7 +204,7 @@ function Validate(obj: any) {
 
     let isValid = true;
     for (const prop in objValidatorConfig) {
-        for (const validator in objValidatorConfig[prop]) {
+        for (const validator of objValidatorConfig[prop]) {
             switch (validator) {
                 case 'required':
                     isValid = isValid && !!obj[prop];
@@ -215,6 +223,7 @@ function Validate(obj: any) {
 class Course {
     @Required
     name: string;
+    @PositiveNumber
     price: number;
 
     constructor(n: string, p: number) {
@@ -233,5 +242,11 @@ courseForm.addEventListener('submit', event => {
     const price = +priceEl.value;
 
     const course = new Course(title, price);
-    console.log(course);
+
+    if (!validate(course)) {
+        alert('Validation failed!');
+    } else {
+        console.log('Validation successful for', course);
+    }
 })
+
