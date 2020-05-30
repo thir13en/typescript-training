@@ -213,6 +213,7 @@ function Validate(obj: any) {
 }
 
 class Course {
+    @Required
     name: string;
     price: number;
 
