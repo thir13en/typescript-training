@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   constructor(private coursesService: CoursesService) {}
 
   ngOnInit() {
-    this.coursesService.getCourseDetail(1);
+    this.coursesService.getCourseDetail(1)
+      .subscribe(console.log);
   }
 }
