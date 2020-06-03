@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { CoursesService } from './services/courses.service';
+import { Observable } from 'rxjs';
+import CourseDetail from '../../../shared/interfaces/course-detail';
 
 
 @Component({
@@ -9,12 +11,11 @@ import { CoursesService } from './services/courses.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'courses-app';
+  course$!: Observable<CourseDetail>;
 
   constructor(private coursesService: CoursesService) {}
 
   ngOnInit() {
-    this.coursesService.getCourseDetail(1)
-      .subscribe(console.log);
+    this.course$ = this.coursesService.getCourseDetail(1);
   }
 }

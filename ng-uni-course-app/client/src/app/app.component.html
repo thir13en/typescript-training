@@ -2,7 +2,7 @@
   <div>
     <div class="main-container">
       <div class="list">
-        <app-course-detail></app-course-detail>
+        <app-course-detail *ngIf="course$ | async as course" [courseDetail]="course"></app-course-detail>
       </div>
     </div>
   </div>
