@@ -72,3 +72,9 @@ but we know the type. The syntax is as follows:
 
 ### The never type
 Can be assigned to any kind of variable but tolerates no assignments.
+
+
+### Namespaces
+Are a type definition structure still supported but no longer recommended. Instead
+we should use the built in ES6 Import/Export features to do so. This is kind of a 
+legacy feature.
