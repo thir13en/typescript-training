@@ -1,3 +1,16 @@
+// autobing decorator
+function Autobind(_: any, _2: string | Symbol, propDescriptor: PropertyDescriptor) {
+    const originalMethod = propDescriptor.value;
+    const adjustedDescriptor: PropertyDescriptor = {
+        configurable: true,
+        get() {
+            const boundFn = originalMethod.bind(this);
+            return boundFn;
+        }
+    }
+    return adjustedDescriptor;
+}
+
 class ProjectInput {
     private templateEl: HTMLTemplateElement;
     private hostEl: HTMLDivElement;
@@ -20,13 +33,14 @@ class ProjectInput {
         this.attach(this.el);
     }
 
+    @Autobind
     private submitHandler(ev: Event) {
         ev.preventDefault();
         console.log(this.titleElField.value);
     }
 
     private configure(el: HTMLFormElement) {
-        el.addEventListener('submit', this.submitHandler.bind(this));
+        el.addEventListener('submit', this.submitHandler);
         debugger;
     }
 
