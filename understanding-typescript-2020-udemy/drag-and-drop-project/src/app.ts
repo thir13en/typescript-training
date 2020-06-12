@@ -49,11 +49,18 @@ class ProjectInput {
         }
     }
 
+    private clearInputs() {
+        this.titleElField.value = '';
+        this.descriptionElField.value = '';
+        this.peopleElField.value = '';
+    }
+
     @Autobind
     private submitHandler(ev: Event) {
         ev.preventDefault();
         const userInput = this.gatherUserInput();
         if (Array.isArray(userInput)) {
+            this.clearInputs();
             const [title, desc, people] = userInput;
             console.log(title, desc, people);
         }
