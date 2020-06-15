@@ -1,3 +1,35 @@
+// Validation
+interface Validatable {
+    value: string | number,
+    required?: boolean,
+    minLength?: number,
+    maxLength?: number
+    min?: number;
+    max?: number;
+}
+
+function validate(validatableInput: Validatable) {
+    let isValid = true;
+
+    if (validatableInput.required) {
+        isValid = isValid && !!validatableInput.value.toString().trim().length;
+    }
+    if (validatableInput.minLength !== undefined && typeof validatableInput.value === 'string') {
+        isValid = isValid && validatableInput.value.length >= validatableInput.minLength;
+    }
+    if (validatableInput.maxLength !== undefined && typeof validatableInput.value === 'string') {
+        isValid = isValid && validatableInput.value.length <= validatableInput.maxLength;
+    }
+    if (validatableInput.min !== undefined && typeof validatableInput.value === 'number') {
+        isValid = isValid && validatableInput.value >= validatableInput.min;
+    }
+    if (validatableInput.max !== undefined && typeof validatableInput.value === 'number') {
+        isValid = isValid && validatableInput.value <= validatableInput.max;
+    }
+
+    return isValid;
+}
+
 // autobind decorator
 function Autobind(_: any, _2: string | Symbol, propDescriptor: PropertyDescriptor) {
     const originalMethod = propDescriptor.value;
@@ -37,11 +69,23 @@ class ProjectInput {
         const enteredDescriptionValue = this.descriptionElField.value;
         const enteredPeopleValue = this.peopleElField.value;
 
-        if (
-            enteredTitleValue.trim().length === 0 ||
-            enteredDescriptionValue.trim().length === 0 ||
-            enteredPeopleValue.trim().length === 0
-        ) {
+        const titleValidatable: Validatable = {
+            value: enteredTitleValue,
+            required: true,
+        };
+        const descriptionValidatable: Validatable = {
+            value: enteredDescriptionValue,
+            required: true,
+            minLength: 5,
+        };
+        const peopleValidatable: Validatable = {
+            value: +enteredPeopleValue,
+            required: true,
+            min: 1,
+            max: 5,
+        };
+
+        if (!validate(titleValidatable) || !validate(descriptionValidatable) || !validate(peopleValidatable)) {
             alert('You need to fill all fields');
             return;
         } else {
