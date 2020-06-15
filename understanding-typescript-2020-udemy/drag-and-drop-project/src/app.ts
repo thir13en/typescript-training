@@ -42,6 +42,21 @@ function Autobind(_: any, _2: string | Symbol, propDescriptor: PropertyDescripto
     return adjustedDescriptor;
 }
 
+class ProjectList {
+    private templateEl: HTMLTemplateElement;
+    private hostEl: HTMLDivElement;
+    readonly el: HTMLElement;
+
+    constructor() {
+        this.templateEl = document.getElementById('project-list')! as HTMLTemplateElement;
+        this.hostEl = document.getElementById('app')! as HTMLDivElement;
+
+        const importedHTMLContent = document.importNode(this.templateEl.content, true);
+        this.el = importedHTMLContent.firstElementChild as HTMLFormElement;
+        this.el.id = 'user-input';
+    }
+}
+
 class ProjectInput {
     private templateEl: HTMLTemplateElement;
     private hostEl: HTMLDivElement;
