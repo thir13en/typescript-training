@@ -1,3 +1,33 @@
+// Project State Management
+class ProjectsState {
+    private projects: any[] = [];
+
+    // singleton pattern
+    private static instance: ProjectsState;
+    static getInstance() {
+        if (!this.instance) {
+            this.instance = new ProjectsState();
+        }
+        return this.instance;
+    }
+
+    // singleton pattern
+    private constructor() {}
+
+    addProject(title: string, description: string, people: number) {
+        const newProject = {
+            id: Math.random().toString(),
+            title,
+            description,
+            people,
+        }
+
+        this.projects.push(newProject);
+    }
+}
+
+const projectsState = ProjectsState.getInstance();
+
 // Validation
 interface Validatable {
     value: string | number,
