@@ -1,6 +1,7 @@
 // Project State Management
 class ProjectsState {
     private projects: any[] = [];
+    private listeners: any[] = [];
 
     // singleton pattern
     private static instance: ProjectsState;
@@ -23,6 +24,13 @@ class ProjectsState {
         }
 
         this.projects.push(newProject);
+        for (const listenerFn of this.listeners) {
+            listenerFn(this.projects.slice());
+        }
+    }
+
+    addListener(listenerFn: Function) {
+        this.listeners.push(listenerFn);
     }
 }
 
@@ -72,18 +80,26 @@ function Autobind(_: any, _2: string | Symbol, propDescriptor: PropertyDescripto
     return adjustedDescriptor;
 }
 
-class ProjectList {
+class ProjectsList {
     private templateEl: HTMLTemplateElement;
     private hostEl: HTMLDivElement;
     readonly el: HTMLElement;
+    private assignedProjects: any[];
 
     constructor(private type: 'active' | 'finished') {
+        this.assignedProjects = [];
         this.templateEl = document.getElementById('project-list')! as HTMLTemplateElement;
         this.hostEl = document.getElementById('app')! as HTMLDivElement;
 
         const importedHTMLContent = document.importNode(this.templateEl.content, true);
         this.el = importedHTMLContent.firstElementChild as HTMLElement;
         this.el.id = `${this.type}-projects`;
+        // observer pattern implementation
+        projectsState.addListener((projects: any[]) => {
+            this.assignedProjects = projects;
+            this.renderProjects();
+        });
+
         this.attach(this.el);
         this.renderContent(this.el);
     }
@@ -92,6 +108,16 @@ class ProjectList {
         const listId = `${this.type}-projects-list`;
         el.querySelector('ul')!.id = listId;
         el.querySelector('h2')!.textContent = `${this.type.toUpperCase()} PROJECTS`;
+    }
+
+    private renderProjects() {
+        const listEl: HTMLUListElement = document.getElementById(`${this.type}-projects-list`)! as HTMLUListElement;
+
+        for(const prjItem of this.assignedProjects) {
+            const listItem = document.createElement('li');
+            listItem.textContent = prjItem.title;
+            listEl.appendChild(listItem);
+        }
     }
 
     private attach(el: HTMLElement) {
@@ -163,7 +189,7 @@ class ProjectInput {
         if (Array.isArray(userInput)) {
             this.clearInputs();
             const [title, desc, people] = userInput;
-            console.log(title, desc, people);
+            projectsState.addProject(title, desc, people);
         }
     }
 
@@ -178,5 +204,5 @@ class ProjectInput {
 }
 
 const projectInput = new ProjectInput();
-const activeProjectsLists = new ProjectList('active');
-const finishedProjectsLists = new ProjectList('finished');
+const activeProjectsLists = new ProjectsList('active');
+const finishedProjectsLists = new ProjectsList('finished');
