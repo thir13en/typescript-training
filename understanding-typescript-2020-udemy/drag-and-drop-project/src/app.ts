@@ -135,6 +135,7 @@ class ProjectsList {
     private renderProjects() {
         const listEl: HTMLUListElement = document.getElementById(`${this.type}-projects-list`)! as HTMLUListElement;
 
+        // clean up last projects for re-rendering
         listEl.innerHTML = '';
         for(const prjItem of this.assignedProjects) {
             const listItem = document.createElement('li');
