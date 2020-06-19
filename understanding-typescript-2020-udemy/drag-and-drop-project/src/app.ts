@@ -1,7 +1,21 @@
+enum ProjectStatus { Active, Finished }
+
+class Project {
+    constructor(
+        public id: string,
+        public title: string,
+        public description: string,
+        public people: number,
+        public status: ProjectStatus
+    ) {}
+}
+
 // Project State Management
+type Listener = (items: Project[]) => void;
+
 class ProjectsState {
-    private projects: any[] = [];
-    private listeners: any[] = [];
+    private projects: Project[] = [];
+    private listeners: Listener[] = [];
 
     // singleton pattern
     private static instance: ProjectsState;
@@ -16,12 +30,13 @@ class ProjectsState {
     private constructor() {}
 
     addProject(title: string, description: string, people: number) {
-        const newProject = {
-            id: Math.random().toString(),
+        const newProject = new Project(
+            Math.random().toString(),
             title,
             description,
             people,
-        }
+            ProjectStatus.Active,
+        );
 
         this.projects.push(newProject);
         for (const listenerFn of this.listeners) {
@@ -29,7 +44,7 @@ class ProjectsState {
         }
     }
 
-    addListener(listenerFn: Function) {
+    addListener(listenerFn: Listener) {
         this.listeners.push(listenerFn);
     }
 }
@@ -84,7 +99,7 @@ class ProjectsList {
     private templateEl: HTMLTemplateElement;
     private hostEl: HTMLDivElement;
     readonly el: HTMLElement;
-    private assignedProjects: any[];
+    private assignedProjects: Project[];
 
     constructor(private type: 'active' | 'finished') {
         this.assignedProjects = [];
@@ -95,7 +110,7 @@ class ProjectsList {
         this.el = importedHTMLContent.firstElementChild as HTMLElement;
         this.el.id = `${this.type}-projects`;
         // observer pattern implementation
-        projectsState.addListener((projects: any[]) => {
+        projectsState.addListener((projects: Project[]) => {
             this.assignedProjects = projects;
             this.renderProjects();
         });
@@ -195,7 +210,6 @@ class ProjectInput {
 
     private configure(el: HTMLFormElement) {
         el.addEventListener('submit', this.submitHandler);
-        debugger;
     }
 
     private attach(el: HTMLFormElement) {
