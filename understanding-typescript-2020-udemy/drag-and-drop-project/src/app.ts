@@ -10,6 +10,13 @@ class Project {
     ) {}
 }
 
+class ProjectHTMLItem {
+    private htmlEl = document.createElement('li');
+
+    constructor(private parentULEl) {
+    }
+}
+
 // Project State Management
 type Listener<T> = (items: T[]) => void;
 
