@@ -61,7 +61,6 @@ class ProjectItem extends Component<HTMLUListElement, HTMLLIElement>{
         el.querySelector('h2')!.textContent = this.project.title;
         el.querySelector('h3')!.textContent = this.project.people.toString();
         el.querySelector('p')!.textContent = this.project.description;
-        debugger;
     }
 }
 
@@ -188,12 +187,12 @@ class ProjectsList extends Component<HTMLDivElement, HTMLElement>{
     }
 
     private renderProjects() {
-        const listEl: HTMLUListElement = document.getElementById(`${this.type}-projects-list`)! as HTMLUListElement;
+        const listEl: HTMLUListElement = this.el.querySelector(`#${this.type}-projects-list`)! as HTMLUListElement;
 
         // clean up last projects for re-rendering
         listEl.innerHTML = '';
         for(const prjItem of this.assignedProjects) {
-            new ProjectItem(this.el.id, prjItem);
+            new ProjectItem(listEl.id, prjItem);
         }
     }
 }
