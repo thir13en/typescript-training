@@ -13,7 +13,12 @@ class Project {
 class ProjectHTMLItem {
     private htmlEl = document.createElement('li');
 
-    constructor(private parentULEl) {
+    constructor(
+        parentULEl: HTMLUListElement,
+        project: Project,
+    ) {
+        this.htmlEl.textContent = project.title;
+        parentULEl.appendChild(this.htmlEl);
     }
 }
 
@@ -180,9 +185,7 @@ class ProjectsList extends Component<HTMLDivElement, HTMLElement>{
         // clean up last projects for re-rendering
         listEl.innerHTML = '';
         for(const prjItem of this.assignedProjects) {
-            const listItem = document.createElement('li');
-            listItem.textContent = prjItem.title;
-            listEl.appendChild(listItem);
+            new ProjectHTMLItem(listEl, prjItem);
         }
     }
 }
