@@ -1,5 +1,40 @@
 enum ProjectStatus { Active, Finished }
 
+// base class, responsible for connecting and rendering stuff in the template
+abstract class Component<T extends HTMLElement, U extends HTMLElement> {
+    private templateEl: HTMLTemplateElement;
+    private hostEl: T
+    readonly el: U;
+
+    constructor(
+        templateId: string,
+        hostElId: string,
+        insertAtStart: boolean,
+        newElId?: string
+    ) {
+        this.templateEl = document.getElementById(templateId)! as HTMLTemplateElement;
+        this.hostEl = document.getElementById(hostElId)! as T;
+
+        const importedHTMLContent = document.importNode(this.templateEl.content, true);
+        this.el = importedHTMLContent.firstElementChild as U;
+        if (newElId) {
+            this.el.id = newElId;
+        }
+
+        this.attach(this.el, insertAtStart);
+    }
+
+    protected attach(el: U, insertAtStart: boolean) {
+        this.hostEl.insertAdjacentElement(
+            insertAtStart ? 'afterbegin' : 'beforeend',
+            el
+        );
+    }
+
+    protected abstract configure(el?: U): void;
+    protected abstract renderContent(el: U): void;
+}
+
 class Project {
     constructor(
         public id: string,
@@ -10,15 +45,23 @@ class Project {
     ) {}
 }
 
-class ProjectHTMLItem {
-    private htmlEl = document.createElement('li');
-
+class ProjectItem extends Component<HTMLUListElement, HTMLLIElement>{
     constructor(
-        parentULEl: HTMLUListElement,
-        project: Project,
+        hostId: string,
+        private project: Project,
     ) {
-        this.htmlEl.textContent = project.title;
-        parentULEl.appendChild(this.htmlEl);
+        super('single-project', hostId, false, project.id);
+        this.configure();
+        this.renderContent(this.el);
+    }
+
+    protected configure() {}
+
+    protected renderContent(el: HTMLLIElement) {
+        el.querySelector('h2')!.textContent = this.project.title;
+        el.querySelector('h3')!.textContent = this.project.people.toString();
+        el.querySelector('p')!.textContent = this.project.description;
+        debugger;
     }
 }
 
@@ -112,41 +155,6 @@ function Autobind(_: any, _2: string | Symbol, propDescriptor: PropertyDescripto
     return adjustedDescriptor;
 }
 
-// base class
-abstract class Component<T extends HTMLElement, U extends HTMLElement> {
-    private templateEl: HTMLTemplateElement;
-    private hostEl: T
-    readonly el: U;
-
-    constructor(
-        templateId: string,
-        hostElId: string,
-        insertAtStart: boolean,
-        newElId?: string
-    ) {
-        this.templateEl = document.getElementById(templateId)! as HTMLTemplateElement;
-        this.hostEl = document.getElementById(hostElId)! as T;
-
-        const importedHTMLContent = document.importNode(this.templateEl.content, true);
-        this.el = importedHTMLContent.firstElementChild as U;
-        if (newElId) {
-            this.el.id = newElId;
-        }
-
-        this.attach(this.el, insertAtStart);
-    }
-
-    protected attach(el: U, insertAtStart: boolean) {
-        this.hostEl.insertAdjacentElement(
-            insertAtStart ? 'afterbegin' : 'beforeend',
-            el
-        );
-    }
-
-    protected abstract configure(el?: U): void;
-    protected abstract renderContent(el: U): void;
-}
-
 class ProjectsList extends Component<HTMLDivElement, HTMLElement>{
     private assignedProjects: Project[];
 
@@ -185,7 +193,7 @@ class ProjectsList extends Component<HTMLDivElement, HTMLElement>{
         // clean up last projects for re-rendering
         listEl.innerHTML = '';
         for(const prjItem of this.assignedProjects) {
-            new ProjectHTMLItem(listEl, prjItem);
+            new ProjectItem(this.el.id, prjItem);
         }
     }
 }
