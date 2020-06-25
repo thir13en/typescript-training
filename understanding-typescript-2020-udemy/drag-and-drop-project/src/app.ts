@@ -78,7 +78,8 @@ class ProjectItem extends Component<HTMLUListElement, HTMLLIElement> implements 
 
     @Autobind
     dragStartHandler(event: DragEvent) {
-        console.log(event);
+        event.dataTransfer!.setData('text/plain', this.project.id);
+        event.dataTransfer!.effectAllowed = 'move';
     }
 
     dragEndHandler(_: DragEvent) {
@@ -198,13 +199,18 @@ class ProjectsList extends Component<HTMLDivElement, HTMLElement> implements Dra
     }
 
     @Autobind
-    dragOverHandler(_: DragEvent) {
-        const listEl = this.el.querySelector('ul')!;
+    dragOverHandler(event: DragEvent) {
+        if (event.dataTransfer && event.dataTransfer.types[0] === 'text/plain') {
+            // drop will only trigger if this method is called, because the default is to not allow dropping
+            event.preventDefault();
+            const listEl = this.el.querySelector('ul')!;
 
-        listEl.classList.add('droppable');
+            listEl.classList.add('droppable');
+        }
     }
 
-    dropHandler(_: DragEvent) {
+    dropHandler(event: DragEvent) {
+        console.log(event.dataTransfer!.getData('text/plain'));
     }
 
     @Autobind
@@ -215,9 +221,10 @@ class ProjectsList extends Component<HTMLDivElement, HTMLElement> implements Dra
     }
 
     protected configure() {
-        this.el.addEventListener('dragover', this.dragOverHandler);
-        this.el.addEventListener('dragleave', this.dragLeaveHandler);
-        this.el.addEventListener('drop', this.dropHandler);
+        // TODO: solve error link triggering on drop
+        // this.el.addEventListener('dragover', this.dragOverHandler);
+        // this.el.addEventListener('dragleave', this.dragLeaveHandler);
+        // this.el.addEventListener('drop', this.dropHandler);
         // observer pattern implementation
         projectsState.addListener((projects: Project[]) => {
             const relevantProjects = projects.filter(prj => {
