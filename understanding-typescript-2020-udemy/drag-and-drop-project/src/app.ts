@@ -186,7 +186,7 @@ function Autobind(_: any, _2: string | Symbol, propDescriptor: PropertyDescripto
     return adjustedDescriptor;
 }
 
-class ProjectsList extends Component<HTMLDivElement, HTMLElement>{
+class ProjectsList extends Component<HTMLDivElement, HTMLElement> implements DragTarget {
     private assignedProjects: Project[];
 
     constructor(private type: 'active' | 'finished') {
@@ -197,7 +197,27 @@ class ProjectsList extends Component<HTMLDivElement, HTMLElement>{
         this.renderContent(this.el);
     }
 
+    @Autobind
+    dragOverHandler(_: DragEvent) {
+        const listEl = this.el.querySelector('ul')!;
+
+        listEl.classList.add('droppable');
+    }
+
+    dropHandler(_: DragEvent) {
+    }
+
+    @Autobind
+    dragLeaveHandler(_: DragEvent) {
+        const listEl = this.el.querySelector('ul')!;
+
+        listEl.classList.remove('droppable');
+    }
+
     protected configure() {
+        this.el.addEventListener('dragover', this.dragOverHandler);
+        this.el.addEventListener('dragleave', this.dragLeaveHandler);
+        this.el.addEventListener('drop', this.dropHandler);
         // observer pattern implementation
         projectsState.addListener((projects: Project[]) => {
             const relevantProjects = projects.filter(prj => {
