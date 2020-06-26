@@ -82,8 +82,7 @@ class ProjectItem extends Component<HTMLUListElement, HTMLLIElement> implements 
         event.dataTransfer!.effectAllowed = 'move';
     }
 
-    dragEndHandler(_: DragEvent) {
-    }
+    dragEndHandler(_: DragEvent) {}
 
     protected configure() {
         this.el.addEventListener('dragstart', this.dragStartHandler);
@@ -136,6 +135,22 @@ class ProjectsState extends State<Project>{
 
         this.projects.push(newProject);
         for (const listenerFn of this.listeners) {
+            listenerFn(this.projects.slice());
+        }
+    }
+
+    switchProjectStatus(projectId: string, newStatus: ProjectStatus) {
+        const project = this.projects.find(project => project.id === projectId);
+
+        if (project) {
+            project.status = newStatus;
+        }
+
+        this.updateListeners();
+    }
+
+    updateListeners() {
+        for(const listenerFn of this.listeners) {
             listenerFn(this.projects.slice());
         }
     }
@@ -200,17 +215,21 @@ class ProjectsList extends Component<HTMLDivElement, HTMLElement> implements Dra
 
     @Autobind
     dragOverHandler(event: DragEvent) {
+        // drop will only trigger if this method is called, because the default is to not allow dropping
+        event.preventDefault();
         if (event.dataTransfer && event.dataTransfer.types[0] === 'text/plain') {
-            // drop will only trigger if this method is called, because the default is to not allow dropping
-            event.preventDefault();
             const listEl = this.el.querySelector('ul')!;
 
             listEl.classList.add('droppable');
         }
     }
 
+    @Autobind
     dropHandler(event: DragEvent) {
-        console.log(event.dataTransfer!.getData('text/plain'));
+        event.preventDefault();
+        const projectId = event.dataTransfer!.getData('text/plain');
+        const status = this.type === 'active' ? ProjectStatus.Active : ProjectStatus.Finished;
+        projectsState.switchProjectStatus(projectId, status);
     }
 
     @Autobind
@@ -221,10 +240,9 @@ class ProjectsList extends Component<HTMLDivElement, HTMLElement> implements Dra
     }
 
     protected configure() {
-        // TODO: solve error link triggering on drop
-        // this.el.addEventListener('dragover', this.dragOverHandler);
-        // this.el.addEventListener('dragleave', this.dragLeaveHandler);
-        // this.el.addEventListener('drop', this.dropHandler);
+        this.el.addEventListener('dragover', this.dragOverHandler);
+        this.el.addEventListener('dragleave', this.dragLeaveHandler);
+        this.el.addEventListener('drop', this.dropHandler);
         // observer pattern implementation
         projectsState.addListener((projects: Project[]) => {
             const relevantProjects = projects.filter(prj => {
