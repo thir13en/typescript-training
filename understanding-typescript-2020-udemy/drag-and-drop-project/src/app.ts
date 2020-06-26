@@ -142,7 +142,7 @@ class ProjectsState extends State<Project>{
     switchProjectStatus(projectId: string, newStatus: ProjectStatus) {
         const project = this.projects.find(project => project.id === projectId);
 
-        if (project) {
+        if (project && project.status !== newStatus) {
             project.status = newStatus;
         }
 
