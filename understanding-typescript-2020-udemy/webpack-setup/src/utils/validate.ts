@@ -1,4 +1,4 @@
-import { Validatable } from '../interfaces/validatable.interface.js';
+import { Validatable } from '../interfaces/validatable.interface';
 
 
 export default function validate(validatableInput: Validatable) {

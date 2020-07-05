@@ -1,6 +1,6 @@
 // Project State Management
-import { Project } from '../models/project.js';
-import { ProjectStatus } from '../enums/project-status.enum.js';
+import { Project } from '../models/project';
+import { ProjectStatus } from '../enums/project-status.enum';
 
 type Listener<T> = (items: T[]) => void;
 
