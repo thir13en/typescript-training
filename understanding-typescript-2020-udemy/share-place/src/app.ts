@@ -10,7 +10,7 @@ function searchAddressHandler(event: Event) {
     event.preventDefault();
     const enteredAddress = addrInput.value;
 
-    axios.get();
+    axios.get('');
 }
 
 form.addEventListener('submit', searchAddressHandler);
