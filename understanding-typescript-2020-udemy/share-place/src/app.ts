@@ -10,6 +10,7 @@ function searchAddressHandler(event: Event) {
     event.preventDefault();
     const enteredAddress = addrInput.value;
 
+    // TODO: add notes on geocoding Google API
     axios.get('');
 }
 
