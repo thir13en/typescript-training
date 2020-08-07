@@ -1,5 +1,7 @@
 const path = require('path');
 
+console.log('connected...');
+
 module.exports = {
   mode: 'development',
   entry: './src/app.ts',
