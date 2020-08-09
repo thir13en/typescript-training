@@ -1,6 +1,6 @@
 const path = require('path');
 
-console.log('connected...');
+console.log(process.env);
 
 module.exports = {
   mode: 'development',

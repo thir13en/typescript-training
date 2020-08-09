@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "install:clean": "rm -fr node_modules npm-shrinkwrap.json && npm i && npm shrinkwrap"
   },
   "keywords": [
     "typescript",
@@ -17,9 +18,10 @@
     "axios": "~0.19.2"
   },
   "devDependencies": {
-    "ts-loader": "~8.0.0",
-    "typescript": "~3.9.6",
-    "webpack": "~4.43.0",
+    "dotenv": "~8.2.0",
+    "ts-loader": "~8.0.2",
+    "typescript": "~3.9.7",
+    "webpack": "~4.44.1",
     "webpack-cli": "~3.3.12",
     "webpack-dev-server": "~3.11.0"
   }
