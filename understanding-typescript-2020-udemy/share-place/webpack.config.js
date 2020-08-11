@@ -1,5 +1,6 @@
 const path = require('path');
 
+// TODO: not working, figure out how to use env variables in webpack
 console.log(process.env);
 
 module.exports = {
