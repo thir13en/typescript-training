@@ -2,13 +2,14 @@ import axios from 'axios';
 
 
 const form  = document.querySelector('form')!;
-const addrInput = document.getElementById('address')! as HTMLInputElement;
+// const addrInput = document.getElementById('address')! as HTMLInputElement;
 
-const GOOGLE_API_KEY = 'AIzaSyBK-TpU34k-7qt9eHp_JdhnU_Krgi5sLEA';
+// TODO figure out how to obtain environment variables in this execution context
+console.log(process.env);
 
 function searchAddressHandler(event: Event) {
     event.preventDefault();
-    const enteredAddress = addrInput.value;
+    // const enteredAddress = addrInput.value;
 
     // TODO: add notes on geocoding Google API
     axios.get('');

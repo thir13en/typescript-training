@@ -1,9 +1,7 @@
 const path = require('path');
-
 // necessary for dotenv to work
 require('dotenv').config();
 
-console.log(process.env.TS_TEST);
 
 module.exports = {
   mode: 'development',
