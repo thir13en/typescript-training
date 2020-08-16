@@ -5,7 +5,7 @@ const form  = document.querySelector('form')!;
 // const addrInput = document.getElementById('address')! as HTMLInputElement;
 
 // TODO figure out how to obtain environment variables in this execution context
-console.log(process.env);
+console.log(process.env.TS_TEST);
 
 function searchAddressHandler(event: Event) {
     event.preventDefault();
