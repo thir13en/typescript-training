@@ -1,0 +1,30 @@
+{
+  "name": "typescript-training",
+  "version": "1.0.0",
+  "description": "training project for mastering tyescript",
+  "private": true,
+  "scripts": {
+    "start": "http-server -c-1",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thir13en/typescript-training.git"
+  },
+  "keywords": [
+    "typescript"
+  ],
+  "author": "thir13en",
+  "license": "ISC",
+  "homepage": "https://github.com/thir13en/typescript-training#readme",
+  "dependencies": {
+    "jquery": "~3.5.0",
+    "lodash": "~4.17.15"
+  },
+  "devDependencies": {
+    "@types/lodash": "~4.14.150",
+    "@types/node": "~13.13.5",
+    "http-server": "~0.12.1",
+    "typescript": "~3.8.3"
+  }
+}
