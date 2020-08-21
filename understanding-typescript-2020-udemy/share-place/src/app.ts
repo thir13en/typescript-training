@@ -13,4 +13,7 @@ function searchAddressHandler(event: Event) {
         .then(console.log);
 }
 
+axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=${process.env.GOOGLE_API_KEY}`)
+    .then(console.log);
+
 form.addEventListener('submit', searchAddressHandler);
