@@ -94,5 +94,16 @@ lockedNames.push('Laura');
 // will fail since lockedNames is Readonly. 
 ```
 
+### The `ReadonlyArray` type, bringing immutability powers to Arrays
+```typescript
+type Author = Readonly<{
+  name: string;
+  email: string;
+  // notice that it already knows that this is a Book Array
+  books: ReadonlyArray<Book>;
+}>;
+
+```
+
 ### More info on utility types:
 [Follow this link](https://www.typescriptlang.org/docs/handbook/utility-types.html)
