@@ -1,5 +1,12 @@
-In Typescript, types are defined by a collection of it's properties. This is known as Structural 
-Subtyping
+### Typing
+
+In Typescript, types are defined by a collection of it's properties. This is known as [Structural 
+Subtyping](glossary.md).
+
+### In the old times, there where Namespaces
+Namespaces are type definition structures still supported but **no longer recommended**. Instead
+we should use the built in `ES6 Import/Export` features to do so. This is kind of a 
+**legacy feature**.
 
 ### Intersection types
 Intersection types can be also achieved by interface extension, but there is a custom syntax for this one:  
@@ -57,7 +64,10 @@ moveAnimal(animal: Animal) {
 moveAnimal({ type: 'bird', flyingSpeed: 120 });
 ```
 ### Type Casting
-expression as TypeCasted
+Done using the as `keyword`.
+```typescript
+expression as TypeCast
+```
 
 ### Index Properties
 Useful when we don't know how many properties an interface will have,
@@ -72,11 +82,6 @@ but we know the type. The syntax is as follows:
 
 ### The never type
 Can be assigned to any kind of variable but tolerates no assignments.
-
-### Namespaces
-Are a type definition structure still supported but no longer recommended. Instead
-we should use the built in ES6 Import/Export features to do so. This is kind of a 
-legacy feature.
 
 ### Using declare as a last resort
 If you know you will have some variables available but have no typing for them, you can declare them
