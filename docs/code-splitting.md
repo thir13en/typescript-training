@@ -45,3 +45,16 @@ give a name to the file.
 }
 ```
 It is needed to change the moduling type to `amd`.
+
+### Use default `ES6 import/export` syntax without module bundler
+
+1. Add the `es6` default `import/export` syntax to make your app more modular.
+1. In `tsconfig.json`, make sure these two flags are set like so:
+```json
+{
+    "target": "ES6", /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'. */
+    "module": "ES2015"
+}
+```
+1. In your HTML file, make sure you import the app with the `defer` and `type="module"`
+attributes
