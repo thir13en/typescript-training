@@ -19,11 +19,11 @@
   "homepage": "https://github.com/thir13en/typescript-training#readme",
   "dependencies": {
     "jquery": "~3.5.0",
-    "lodash": "~4.17.15"
+    "lodash": "~4.17.20"
   },
   "devDependencies": {
-    "@types/lodash": "~4.14.150",
-    "@types/node": "~13.13.5",
+    "@types/lodash": "~4.14.165",
+    "@types/node": "~13.13.36",
     "http-server": "~0.12.1",
     "typescript": "~3.8.3"
   }
