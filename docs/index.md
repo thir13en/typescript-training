@@ -5,6 +5,8 @@
 1. [Decorators](decorators.md)
 1. [Enums](enums.md)
 1. [Imports](imports.md)
+1. [Modifiers](modifiers.md)
+1. [Node](node.md)
 1. [Enums](enums.md)
 1. [Tricks](tricks.md)
 1. [`tsconfig.json`](tsconfig.md)
