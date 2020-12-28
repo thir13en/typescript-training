@@ -107,3 +107,6 @@ type Author = Readonly<{
 
 ### More info on utility types:
 [Follow this link](https://www.typescriptlang.org/docs/handbook/utility-types.html)
+
+### Interesting Resources
+[Advanced Typescript Type Tricks](https://casualdeveloper.net/post/2020-12-21-advanced-typescript-type-tricks/)
