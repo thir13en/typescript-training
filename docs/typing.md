@@ -80,6 +80,23 @@ but we know the type. The syntax is as follows:
     }
 ```
 
+### Type Predicates
+ Type predicates are a special return type that signals to the Typescript compiler what type a particular value is. Type predicates are always attached to a function that takes a single argument and returns a boolean.
+```typescript
+interface Cat {
+  numberOfLives: number;
+}
+interface Dog {
+  isAGoodBoy: boolean;
+}
+
+function isCat(animal: Cat | Dog): animal is Cat {
+  return typeof animal.numberOfLives === 'number';
+}
+
+```
+Since this function returns a boolean and includes the type predicate animal is `Cat`, the Typescript compiler will correctly cast the animal as `Cat`
+
 ### The never type
 Can be assigned to any kind of variable but tolerates no assignments.
 
