@@ -12,6 +12,13 @@ we should use the built in `ES6 Import/Export` features to do so. This is kind o
 Intersection types can be also achieved by interface extension, but there is a custom syntax for this one:  
 `const name: Type1 & Type2`
 
+### Union types
+The syntax is as follows:
+`const name: Type1 | Type2`
+
+### Type Inference
+`Typescript` will try to infer your types on compile time whenever possible. This is known as type inference and it's one of the most powerful features of `typescript` since it allows you to leverage typing over a non-typed code. For example, if you assign a `number` value to a variable, typescript will infer the `number` nature of your variable.
+
 ### Type Guards
 We can make sure a certain type is used in a type that is a composition of several types such as
 Union Types, by a checking pattern named Type Guard

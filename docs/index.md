@@ -12,3 +12,4 @@
 1. [Third Party](third-party.md)
 1. [Tricks](tricks.md)
 1. [`tsconfig.json`](tsconfig.md)
+1. [Typing](typing.md)
